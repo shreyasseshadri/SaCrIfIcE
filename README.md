@@ -28,3 +28,6 @@ The bot is triggered by a comment of the form
 It replies with the sarcasified string
 
 > SoMe StRiNg
+
+
+### [Reference](https://dev.to/seiyria/making-a-reddit-reply-bot-f55)
