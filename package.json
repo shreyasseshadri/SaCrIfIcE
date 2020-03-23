@@ -1,0 +1,16 @@
+{
+  "name": "reddit_bot",
+  "version": "1.0.0",
+  "description": "A reddit bot for sarcasm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "snoostorm": "^1.3.0",
+    "snoowrap": "^1.21.0"
+  }
+}
