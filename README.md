@@ -11,7 +11,7 @@ export CLIENT_ID=**
 export CLIENT_SECRET=**
 export REDDIT_USER=**
 export REDDIT_PASS=**
-export CATCH_PHRASE=<some_cool_catch_phrase>
+export TRIGGER_PHRASES=<trigger_phrase>,<another_trigger_phrase>
 ```
 Export the variables using
 ```
@@ -24,9 +24,9 @@ npm start
 ## Instructions for the bot
 
 The bot is triggered by a comment of the form
-> <some_cool_catch_phrase> some string
+> <trigger_phrase> some string
 
-It replies with the sarcasified string
+It replies to the parent comment with the sarcasified string
 
 > SoMe StRiNg
 

@@ -9,18 +9,27 @@ if (!process.env.CLIENT_SECRET || !process.env.CLIENT_ID || !process.env.REDDIT_
     process.exit()
 }
 
-const some_cool_catch_phrase = process.env.CATCH_PHRASE; 
+const trigger_phrases = process.env.TRIGGER_PHRASES.split(',')
+
 const whomst_has_summoned_almighty_one = (comment) => {
-    return comment.includes(some_cool_catch_phrase);
+    var ind
+    trigger_phrases.forEach((phrase,i) => {
+        if(comment.includes(phrase)){
+            ind = i
+            return
+        }
+    })
+    return ind
 }
 
-const purify_sacrifice = (comment) => {
-    var start_ind = comment.indexOf(some_cool_catch_phrase)
-    return comment.slice(start_ind+some_cool_catch_phrase.length).trim()
+const purify_sacrifice = (comment,phrase_ind) => {
+    var trigger_phrase = trigger_phrases[phrase_ind]
+    var start_ind = comment.indexOf(trigger_phrase)
+    return comment.slice(start_ind+trigger_phrase.length).trim()
 }
 
-const sacrifice = (comment) => {
-    var purified_sacrifice = purify_sacrifice(comment)
+const sacrifice = (comment,phrase_ind) => {
+    var purified_sacrifice = purify_sacrifice(comment,phrase_ind)
     var wish = ''
     var lowerCase = false
     for (i = 0; i < purified_sacrifice.length; i++) {
@@ -53,8 +62,13 @@ comments.on('item', (item) => {
     if(!item.body) return;
 
     console.log(item.body)
-    console.log()
-    if (!whomst_has_summoned_almighty_one(item.body)) return;
-
-    item.reply(sacrifice(item.body));
+    const phrase_ind = whomst_has_summoned_almighty_one(item.body) 
+    if (!phrase_ind) return;
+    if(!item.parent_id){
+        item.reply(sacrifice(item.body,phrase_ind));
+        return;  
+    }
+    client.getComment(item.parent_id).fetch().then((parentComment) => {
+        parentComment.reply(sacrifice(item.body,phrase_ind));
+    })
 });
