@@ -1,14 +1,15 @@
 const Snoowrap = require('snoowrap');
 const { CommentStream } = require('snoostorm');
-const some_cool_catch_phrase = 'sacrifice-me-o-mighty-one'; 
 
 
 const BOT_START = Date.now() / 1000;
-if (!process.env.CLIENT_SECRET || !process.env.CLIENT_ID || !process.env.REDDIT_USER || !process.env.REDDIT_PASS) {
+if (!process.env.CLIENT_SECRET || !process.env.CLIENT_ID || !process.env.REDDIT_USER 
+    || !process.env.REDDIT_PASS || !process.env.CATCH_PHRASE) {
     console.log('Set the env variables!')
     process.exit()
 }
 
+const some_cool_catch_phrase = process.env.CATCH_PHRASE; 
 const whomst_has_summoned_almighty_one = (comment) => {
     return comment.includes(some_cool_catch_phrase);
 }

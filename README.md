@@ -11,6 +11,7 @@ export CLIENT_ID=**
 export CLIENT_SECRET=**
 export REDDIT_USER=**
 export REDDIT_PASS=**
+export CATCH_PHRASE=<some_cool_catch_phrase>
 ```
 Export the variables using
 ```
