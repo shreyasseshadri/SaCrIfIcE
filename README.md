@@ -1,6 +1,6 @@
 # SaCrIfIcE
 
-A reddot bot that turns a string into a sarcastic one.
+A reddit bot that turns a string into a sarcastic one.
 
 ## Running the server
 
