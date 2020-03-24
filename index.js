@@ -22,14 +22,15 @@ const sacrifice = (comment) => {
     var purified_sacrifice = purify_sacrifice(comment)
     var wish = ''
     var lowerCase = false
-    for(i=0;i<purified_sacrifice.length;i++){
-        if(purified_sacrifice[i] === ' '){
-            wish+=' '
-            continue
-        };
-        wish+= (lowerCase)? purified_sacrifice[i].toLowerCase() : purified_sacrifice[i].toUpperCase()
-        lowerCase = !lowerCase
-    }
+    for (i = 0; i < purified_sacrifice.length; i++) {
+		if (purified_sacrifice[i].match(/[a-z]/i)) {
+			wish += (lowerCase) ? purified_sacrifice[i].toLowerCase() : purified_sacrifice[i].toUpperCase()
+			lowerCase = !lowerCase
+		}
+		else {
+			wish += purified_sacrifice[i]
+		}
+	}
     return wish;
 }
 const client = new Snoowrap({
